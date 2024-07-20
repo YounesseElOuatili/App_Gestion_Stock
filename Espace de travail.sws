@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?PowerDesigner signature="Workspace" version="15.1.0.2850"?>
+<!-- Veuillez ne pas modifier ce fichier -->
+
+<Workspace>
+	<Local Expanded="Yes">
+		<Model Expanded="Yes" ID="{DDCDF572-A825-4729-B5AC-3EFE04D21662}" Loaded="No" Name="Gestion de stock " Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="Gestion de stock.mcd"/>
+		<Model Expanded="Yes" ID="{D3ADDD0F-6C58-4813-A3B5-AA17D535704F}" Name="Gestion de stock" Type="{5F45F978-C4F3-4E35-A3FC-AF3318663A0F}" URL="Gestion de stock.mld"/>
+		<Model Expanded="Yes" ID="{DDCDF572-A825-4729-B5AC-3EFE04D21662}" Loaded="No" Name="Gestion de stock " Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="Gestion de stock.mcd"/>
+		<Model Expanded="Yes" ID="{DDCDF572-A825-4729-B5AC-3EFE04D21662}" Loaded="No" Name="Gestion de stock " Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="Gestion de stock.mcd"/>
+		<Model Expanded="Yes" ID="{DDCDF572-A825-4729-B5AC-3EFE04D21662}" Loaded="No" Name="Gestion de stock " Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="Gestion de stock.mcd"/>
+		<Model Expanded="Yes" ID="{DDCDF572-A825-4729-B5AC-3EFE04D21662}" Loaded="No" Name="Gestion de stock " Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="Gestion de stock.mcd"/>
+		<Model Expanded="Yes" ID="{DDCDF572-A825-4729-B5AC-3EFE04D21662}" Loaded="No" Name="Gestion de stock " Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="Gestion de stock.mcd"/>
+		<Model Expanded="Yes" ID="{DDCDF572-A825-4729-B5AC-3EFE04D21662}" Name="Gestion de stock " Selected="Yes" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="Gestion de stock.mcd"/>
+	</Local>
+	<BrowserModule Name="Référentiel"/>
+</Workspace>

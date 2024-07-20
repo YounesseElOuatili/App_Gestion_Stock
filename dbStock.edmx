@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Gestion_StockModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id_ad" />
+          </Key>
+          <Property Name="Id_ad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom_ad" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Mdp" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categorie">
+          <Key>
+            <PropertyRef Name="Id_cat" />
+          </Key>
+          <Property Name="Id_cat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom_cat" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Produit">
+          <Key>
+            <PropertyRef Name="Id_prod" />
+          </Key>
+          <Property Name="Id_prod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Marque" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Nom_prod" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Adresse_Mac" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Id_util" Type="int" Nullable="false" />
+          <Property Name="Id_Site" Type="int" Nullable="false" />
+          <Property Name="Id_cat" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sites">
+          <Key>
+            <PropertyRef Name="Id_site" />
+          </Key>
+          <Property Name="Id_site" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom_site" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="Id_util" />
+          </Key>
+          <Property Name="Id_util" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom_util" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Email_util" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <Association Name="Fk_prod1">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="Produit" Type="Self.Produit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="Id_util" />
+            </Principal>
+            <Dependent Role="Produit">
+              <PropertyRef Name="Id_util" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_prod2">
+          <End Role="Sites" Type="Self.Sites" Multiplicity="1" />
+          <End Role="Produit" Type="Self.Produit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="Id_site" />
+            </Principal>
+            <Dependent Role="Produit">
+              <PropertyRef Name="Id_Site" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_prod3">
+          <End Role="Categorie" Type="Self.Categorie" Multiplicity="1" />
+          <End Role="Produit" Type="Self.Produit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorie">
+              <PropertyRef Name="Id_cat" />
+            </Principal>
+            <Dependent Role="Produit">
+              <PropertyRef Name="Id_cat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Gestion_StockModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categorie" EntityType="Self.Categorie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produit" EntityType="Self.Produit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sites" EntityType="Self.Sites" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Fk_prod1" Association="Self.Fk_prod1">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Produit" EntitySet="Produit" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_prod2" Association="Self.Fk_prod2">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="Produit" EntitySet="Produit" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_prod3" Association="Self.Fk_prod3">
+            <End Role="Categorie" EntitySet="Categorie" />
+            <End Role="Produit" EntitySet="Produit" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Gestion_StockModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Gestion_StockEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin" EntityType="Gestion_StockModel.Admin" />
+          <EntitySet Name="Categorie" EntityType="Gestion_StockModel.Categorie" />
+          <EntitySet Name="Produit" EntityType="Gestion_StockModel.Produit" />
+          <EntitySet Name="Sites" EntityType="Gestion_StockModel.Sites" />
+          <EntitySet Name="Utilisateur" EntityType="Gestion_StockModel.Utilisateur" />
+          <AssociationSet Name="Fk_prod3" Association="Gestion_StockModel.Fk_prod3">
+            <End Role="Categorie" EntitySet="Categorie" />
+            <End Role="Produit" EntitySet="Produit" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_prod1" Association="Gestion_StockModel.Fk_prod1">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Produit" EntitySet="Produit" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_prod2" Association="Gestion_StockModel.Fk_prod2">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="Produit" EntitySet="Produit" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id_ad" />
+          </Key>
+          <Property Name="Id_ad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom_ad" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Mdp" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Categorie">
+          <Key>
+            <PropertyRef Name="Id_cat" />
+          </Key>
+          <Property Name="Id_cat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom_cat" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Produit" Relationship="Gestion_StockModel.Fk_prod3" FromRole="Categorie" ToRole="Produit" />
+        </EntityType>
+        <EntityType Name="Produit">
+          <Key>
+            <PropertyRef Name="Id_prod" />
+          </Key>
+          <Property Name="Id_prod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Marque" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Nom_prod" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Adresse_Mac" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Id_util" Type="Int32" Nullable="false" />
+          <Property Name="Id_Site" Type="Int32" Nullable="false" />
+          <Property Name="Id_cat" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Categorie" Relationship="Gestion_StockModel.Fk_prod3" FromRole="Produit" ToRole="Categorie" />
+          <NavigationProperty Name="Utilisateur" Relationship="Gestion_StockModel.Fk_prod1" FromRole="Produit" ToRole="Utilisateur" />
+          <NavigationProperty Name="Sites" Relationship="Gestion_StockModel.Fk_prod2" FromRole="Produit" ToRole="Sites" />
+        </EntityType>
+        <EntityType Name="Sites">
+          <Key>
+            <PropertyRef Name="Id_site" />
+          </Key>
+          <Property Name="Id_site" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom_site" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Adresse" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Produit" Relationship="Gestion_StockModel.Fk_prod2" FromRole="Sites" ToRole="Produit" />
+        </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="Id_util" />
+          </Key>
+          <Property Name="Id_util" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom_util" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email_util" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Produit" Relationship="Gestion_StockModel.Fk_prod1" FromRole="Utilisateur" ToRole="Produit" />
+        </EntityType>
+        <Association Name="Fk_prod3">
+          <End Type="Gestion_StockModel.Categorie" Role="Categorie" Multiplicity="1" />
+          <End Type="Gestion_StockModel.Produit" Role="Produit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorie">
+              <PropertyRef Name="Id_cat" />
+            </Principal>
+            <Dependent Role="Produit">
+              <PropertyRef Name="Id_cat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_prod1">
+          <End Type="Gestion_StockModel.Utilisateur" Role="Utilisateur" Multiplicity="1" />
+          <End Type="Gestion_StockModel.Produit" Role="Produit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="Id_util" />
+            </Principal>
+            <Dependent Role="Produit">
+              <PropertyRef Name="Id_util" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_prod2">
+          <End Type="Gestion_StockModel.Sites" Role="Sites" Multiplicity="1" />
+          <End Type="Gestion_StockModel.Produit" Role="Produit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="Id_site" />
+            </Principal>
+            <Dependent Role="Produit">
+              <PropertyRef Name="Id_Site" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Gestion_StockModelStoreContainer" CdmEntityContainer="Gestion_StockEntities1">
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="Gestion_StockModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="Mdp" ColumnName="Mdp" />
+                <ScalarProperty Name="Nom_ad" ColumnName="Nom_ad" />
+                <ScalarProperty Name="Id_ad" ColumnName="Id_ad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categorie">
+            <EntityTypeMapping TypeName="Gestion_StockModel.Categorie">
+              <MappingFragment StoreEntitySet="Categorie">
+                <ScalarProperty Name="Nom_cat" ColumnName="Nom_cat" />
+                <ScalarProperty Name="Id_cat" ColumnName="Id_cat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produit">
+            <EntityTypeMapping TypeName="Gestion_StockModel.Produit">
+              <MappingFragment StoreEntitySet="Produit">
+                <ScalarProperty Name="Id_cat" ColumnName="Id_cat" />
+                <ScalarProperty Name="Id_Site" ColumnName="Id_Site" />
+                <ScalarProperty Name="Id_util" ColumnName="Id_util" />
+                <ScalarProperty Name="Adresse_Mac" ColumnName="Adresse_Mac" />
+                <ScalarProperty Name="Nom_prod" ColumnName="Nom_prod" />
+                <ScalarProperty Name="Marque" ColumnName="Marque" />
+                <ScalarProperty Name="Id_prod" ColumnName="Id_prod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sites">
+            <EntityTypeMapping TypeName="Gestion_StockModel.Sites">
+              <MappingFragment StoreEntitySet="Sites">
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Nom_site" ColumnName="Nom_site" />
+                <ScalarProperty Name="Id_site" ColumnName="Id_site" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Utilisateur">
+            <EntityTypeMapping TypeName="Gestion_StockModel.Utilisateur">
+              <MappingFragment StoreEntitySet="Utilisateur">
+                <ScalarProperty Name="Email_util" ColumnName="Email_util" />
+                <ScalarProperty Name="Nom_util" ColumnName="Nom_util" />
+                <ScalarProperty Name="Id_util" ColumnName="Id_util" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
